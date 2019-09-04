@@ -1,0 +1,12 @@
+<div class="generated">
+	<p>Trang Web của bạn đang được tiến hành</p>
+	<p class="link">Chúng tôi đã gửi tới <i>{{ item.email }}</i> một link để xem quá trình download.
+	</p>
+	<p class="link">
+		Hoặc có thể click vào bên dưới để xem.
+	</p>
+</div>
+<br>
+<div class="text-center">
+	<a href="{% url "site_download" item.slug %}" class="btn btn-lg btn-secondary center-block">Xem</a>
+</div>

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+
+	<!-- viewport meta -->
+	<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+	<meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+	<meta content="This web scraper was developed to download or copy a website which is currently online. The tool downloads all files from a website, including images and videos.  Email Support" name="description"/>
+	<meta content="scraper, download online, website download, html5" name="keywords"/>
+	 <link rel="shortcut icon" type="image/x-icon" href="{% static "img/favicon.png" %}">
+	<title>
+		{% block title %}
+		Website Downloader Online
+		{% endblock title %}
+	</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet"/>
+
+	<!-- inject:css-->
+	<link href="{% static "css/plugin.min.css" %}" rel="stylesheet"/>
+	<link href="{% static "css/style.css" %}" rel="stylesheet"/>
+	<link href="{% static "css/mystyle.css" %}" rel="stylesheet"/>
+	<!-- endinject -->
+
+	<!-- Favicon Icon -->
+	<link href="{% static "img/favicon-32x32.png" %}" rel="icon" sizes="16x16" type="image/png"/>
+
+</head>
+<body>
+
+	{% include "includes/navbar.html" %}
+	{% block main %}
+		
+	{% endblock main %}
+	{% include "includes/footer.html" %}
+
+	<!-- inject:js-->
+	<script src="{% static "js/plugins.min.js" %}"></script>
+	<script src="{% static "js/script.min.js" %}"></script>
+	<script src="{% static "js/custom.js" %}"></script>
+	{% block scripts %}
+		
+	{% endblock scripts %}
+	<!-- endinject-->
+</body>
+</html>

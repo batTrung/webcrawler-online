@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ block.super }}
+{% endblock title %}
+
+
+{% block main %}
+<section class="affiliate_area section--padding">
+	<div class="container">
+		<div class="row">
+			<!-- start col-md-12 -->
+			<div class="col-md-12">
+				<div class="section-title">
+					<h1>
+						Your Affiliate
+						<span class="highlighted">
+							Link
+						</span>
+					</h1>
+					<p>
+						Laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats.
+						Lid est laborum dolo rumes fugats untras.
+					</p>
+				</div>
+			</div>
+			<!-- ends: .col-md-12 -->
+		</div>
+		<!-- ends: .row -->
+		<div class="row">
+			<div class="col-lg-6 offset-lg-3">
+				<div class="cardify affiliate_form">
+					<form action="#">
+						<div class="form-group">
+							<label for="userName">
+								Username
+							</label>
+							<input class="text_field" id="userName" placeholder="Enter your username..." type="text">
+						</div>
+						<div class="form-group">
+							<label for="userName">
+								Enter URL
+							</label>
+							<input class="text_field" id="userUrl" placeholder="http://DigiPro.com" type="text">
+						</div>
+					</form>
+					<!-- ends: .form -->
+					<div class="generated">
+						<p>
+							Affiliate Link
+						</p>
+						<p class="link">
+							http://DigiPro.com?ref=AazzTech
+						</p>
+					</div>
+				</div>
+				<!-- ends: .cardify -->
+			</div>
+			<!-- ends: .col-md-6 -->
+		</div>
+		<!-- ends: .row -->
+	</div>
+	<!-- ends: .container -->
+</section>
+{% endblock main %}

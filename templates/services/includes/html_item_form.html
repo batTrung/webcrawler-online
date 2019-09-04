@@ -1,0 +1,40 @@
+{% load widget_tweaks %}
+
+<form action="#" method="post" novalidate>
+
+	{% for message in messages  %}
+	<div class="alert alert-{{ message.tags }}" role="alert">
+		<strong>{{ message.tags|upper }}!</strong> {{ message }}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span class="icon-close" aria-hidden="true"></span>
+		</button>
+	</div>
+	{% endfor %}
+
+	{% csrf_token %}
+	<div class="form-group">
+		<label for="userName">
+			Website URL
+		</label>
+		{% render_field itemForm.url class="text_field" placeholder="http(s)://example.com" %}
+	</div>
+	<div class="form-group">
+		<label for="userName">
+			Email
+		</label>
+		{% render_field itemForm.email class="text_field" placeholder="email@example.com" %}
+	</div>
+	<div class="form-group">
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<div class="g-recaptcha" data-sitekey="6Lf4h7YUAAAAAEtAvW0t8PpM_YSSTP4bZ1jws34E"></div>
+	</div>
+	<button type="submit" class="btn btn-lg btn-secondary">DOWNLOAD NOW</button>
+	<div class="login_assist">
+		<p class="recover">Giới thiệu về
+			<a href="recover-pass.html">websitedownloader</a></p>
+			<p class="signup">
+				<a href="signup.html">Đăng ký</a>
+				Nhận 10Gb
+			</p>
+		</div>
+	</form>
