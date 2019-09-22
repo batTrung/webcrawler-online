@@ -1,3 +1,6 @@
+import os
+import zipfile
+from io import BytesIO
 import requests
 from django.shortcuts import render, \
 							redirect,\
@@ -6,14 +9,33 @@ from django.contrib import messages
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.conf import settings
+from django.http import HttpResponseNotFound, HttpResponse, Http404
+from myproject.celery import app
 from .forms import ItemForm
-from .models import Item
+from .models import Item, File
 from .decorators import check_recaptcha
+from .tasks import async_website
+from .helpers import generate_tree, get_zip_file
 
 
 def home(request):
 	return render(request,
 				'services/home.html')
+
+
+# def about(request):
+# 	return render(request,
+# 				'services/about.html')
+
+
+def contact(request):
+	return render(request,
+				'services/contact.html')
+
+
+# def how_it_works(request):
+# 	return render(request,
+# 				'services/how-it-works.html')
 
 
 @check_recaptcha
@@ -23,11 +45,14 @@ def item_register(request):
 		itemForm = ItemForm(request.POST)
 		if itemForm.is_valid() and request.recaptcha_is_valid:
 			item = itemForm.save()
+			web_task = async_website.delay(item.slug)
 			data['html_item_form'] = render_to_string(
 								'services/includes/form_success.html',
-								{'item': item},
+								{
+									'item': item,
+									'id_task': web_task.id
+								},
 								request=request)
-
 		else:
 			if itemForm['url'].errors:
 				messages.error(request, 'Đường dẫn không hợp lệ')
@@ -48,15 +73,65 @@ def item_register(request):
 
 def site_download(request, slug):
 	item = get_object_or_404(Item, slug=slug)
-	template_path = settings.TEMP_DIR + '/'
-	print(template_path)
-	r = requests.get('http://themepixels.me/dashforge/lib/@fortawesome/fontawesome-free/css/all.min.css')
-	with open(template_path + 'all.min.css', 'w+') as f:
-		f.write(r.text)
+	tree_html = generate_tree(item)
+	index_path = '/'.join((item.slug, 'index.html'))
+	try:
+		index = File.objects.get(item=item, path=index_path)
+	except:
+		index = None
 
 	context = {
-		'item': item}
+		'item': item,
+		'index': index,
+		'tree_html': tree_html}
 
 	return render(request,
 				'services/item/site-download.html',
 				context)
+
+def site_preview(request, file_path):
+	file_path = file_path.rstrip('/')
+	# file = get_object_or_404(File, path=file_path)
+	file = File.objects.filter(path=file_path).first()
+	if not file:
+		raise Http404
+
+	return render(request,
+				'/'.join(('websites', file.path)))
+
+
+def site_refresh(request, slug):
+	item = get_object_or_404(Item, slug=slug)
+	item.files.all().delete()
+	async_website.delay(item.slug)
+
+	return redirect('site_download', slug)
+
+
+def download_file(request, slug):
+	item = get_object_or_404(Item, slug=slug)
+
+	zip_filename = "%s.zip" % slug
+	
+	filenames = []
+	path_temp_item = '/'.join((settings.TEMP_PATH, slug))
+	path_static_item = '/'.join((settings.STATIC_PATH, slug))
+
+	s = BytesIO()
+	zip_file = zipfile.ZipFile(s, "w")
+	
+	zip_file = get_zip_file(zip_file, path_static_item, slug)
+	zip_file = get_zip_file(zip_file, path_temp_item, slug)
+	
+	zip_file.close()
+
+	resp = HttpResponse(s.getvalue(), content_type = "application/x-zip-compressed")
+	resp['Content-Disposition'] = 'attachment; filename=%s' % zip_filename
+
+	return resp
+
+
+def stop_download(request, task_id):
+	 app.control.revoke(task_id)
+
+	 return HttpResponse("success")

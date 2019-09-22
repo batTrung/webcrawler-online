@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+	{{ block.super }} | How it works?
+{% endblock title %}
+
+{% block main %}
+<section class="working-process section--padding">
+	<div class="container">
+		<div class="row">
+			<!-- Start Section Title -->
+			<div class="col-md-12">
+				<div class="section-title">
+					<h1>It Works Really Easy</h1>
+					<p>Pellentesque facilisis the ullamcorper sapien interdum magna pellentesque kequis. Phasellus
+						condimentum
+						eleifend kerat.
+					</p>
+				</div>
+			</div>
+			<!-- Ends: .col-md-12/Section Title -->
+
+			<div class="col-md-12 step-single">
+				<div class="step-count">
+					<span>Step 1</span>
+					<span><i class="fa fa-long-arrow-down"></i></span>
+				</div>
+				<div class="row">
+					<div class="col-md-6 step-text r-padding">
+						<div>
+							<h2>Chọn Website URL</h2>
+							<p>Pellentesque facilisis the ullamcorper sapien interdum is the magna pellentesque kequis.
+								Phasellus keur condimentum eleifend kerat Pellentesque facilisis the ullamcorper sapien
+							interdum magna pellentesque kequis. Phasellus condimen kettum eleifend kerat.</p>
+						</div>
+					</div>
+					<div class="col-md-6 step-image l-padding">
+						<div>
+							<img src="{% static "img/step01.png" %}" alt="" class="img-fluid">
+						</div>
+					</div>
+				</div>
+			</div><!-- Ends .step-single -->
+
+			<div class="col-md-12 step-single">
+				<div class="step-count step-count2">
+					<span>Step 2</span>
+					<span><i class="fa fa-long-arrow-down"></i></span>
+				</div>
+				<div class="row">
+					<div class="col-md-6 step-image r-padding">
+						<div>
+							<img src="{% static "img/step01.png" %}" alt="" class="img-fluid">
+						</div>
+					</div>
+					<div class="col-md-6 step-text l-padding">
+						<div>
+							<h2>Xác thực Download</h2>
+							<p>Pellentesque facilisis the ullamcorper sapien interdum is the magna pellentesque kequis.
+								Phasellus keur condimentum eleifend kerat Pellentesque facilisis the ullamcorper sapien
+							interdum magna pellentesque kequis. Phasellus condimen kettum eleifend kerat.</p>
+						</div>
+					</div>
+				</div>
+			</div><!-- Ends .step-single -->
+
+			<div class="col-md-12 step-single">
+				<div class="step-count step-last">
+					<span>Step 3</span>
+					<span class="icon-emotsmile"></span>
+				</div>
+				<div class="row">
+					<div class="col-md-6 step-text r-padding">
+						<div>
+							<h2>Purchase Your Product</h2>
+							<p>Pellentesque facilisis the ullamcorper sapien interdum is the magna pellentesque kequis.
+								Phasellus keur condimentum eleifend kerat Pellentesque facilisis the ullamcorper sapien
+							interdum magna pellentesque kequis. Phasellus condimen kettum eleifend kerat.</p>
+						</div>
+					</div>
+					<div class="col-md-6 step-image l-padding">
+						<div>
+							<img src="{% static "img/step01.png" %}" alt="" class="img-fluid">
+						</div>
+					</div>
+				</div>
+			</div><!-- Ends .step-single -->
+
+		</div>
+	</div>
+</section>
+{% endblock main %}

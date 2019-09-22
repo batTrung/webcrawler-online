@@ -25,7 +25,7 @@ SECRET_KEY = '4tk(-5dmd@ogzv&8qe6l83a@dq2dv+qa1=off)*3@!m0bx3&qx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '*']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'core.apps.CoreConfig',
     'services.apps.ServicesConfig',
+    'payment.apps.PaymentConfig',
 
     'widget_tweaks',
 ]
@@ -87,6 +88,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'websites',
+#         'USER': 'trungbat',
+#         'PASSWORD': 'trungbat',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -124,10 +136,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = (STATIC_DIR,)
 
 
 
 GOOGLE_RECAPTCHA_SECRET_KEY = '6Lf4h7YUAAAAAABpn4yTW33getU7ccuNCDI73HZ3'
+
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_TIMEZONE = TIME_ZONE
+
+
+TEMP_PATH = '/'.join((TEMP_DIR, 'websites'))
+STATIC_PATH = '/'.join((STATIC_DIR, 'websites'))
+
+

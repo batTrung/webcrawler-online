@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ block.super }} | Mua lưu lượng
+{% endblock title %}
+
+{% block main %}
+<section class="pricing_area p-top-100 p-bottom-70">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="pricing-wrapper">
+
+
+					<div class="package-single ">
+
+						<div class="package-header">
+							<h5>Mua thêm</h5>
+							<div class="amount">
+								<span>3G</span>
+								$5 per month
+							</div>
+						</div>
+						<a href="" class="btn btn-dark btn-block">Mua</a>
+						<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+						    data-key="{{ key }}"
+						    data-description="A Django Charge"
+						    data-amount="500"
+						    data-locale="auto">
+						</script>
+					</div><!-- ends: .package-single  -->
+
+					<div class="package-single featured-plan">
+						<div class="package-header">
+							<h5>Mua thêm</h5>
+							<div class="amount">
+								<span>5G</span>
+								$7 per month
+							</div>
+						</div>
+						<a href="" class="btn btn-primary btn-block">Mua</a>
+					</div><!-- ends: .package-single  -->
+
+					<div class="package-single ">
+
+						<div class="package-header">
+							<h5>Mua thêm</h5>
+							<div class="amount">
+								<span>10G</span>
+								$10 per month
+							</div>
+						</div>
+						<a href="" class="btn btn-dark btn-block">Mua</a>
+					</div><!-- ends: .package-single  -->
+
+				</div><!-- ends: .pricing-wrapper -->
+			</div>
+		</div><!-- end .row -->
+	</div><!-- end .container -->
+</section>
+{% endblock main %}

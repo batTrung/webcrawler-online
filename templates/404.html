@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+	404 ERROR!
+{% endblock title %}
+
+
+{% block main %}
+<section class="four_o_four_area section--padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 offset-lg-3 text-center">
+				<img src="{% static "img/404.png" %}" alt="404 page">
+				<div class="not_found">
+					<h2>Oops! Page Not Found</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock main %}

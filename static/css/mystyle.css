@@ -6,7 +6,7 @@
 }
 .file-tree ul{
 	list-style:none;
-	padding-left:25px;
+	padding-left:10px;
 	display:none
 }
 .file-tree>ul{
@@ -66,3 +66,8 @@
 }
 
 /* End Folter Tree */
+
+.item-info {
+    padding: 10px;
+}
+
