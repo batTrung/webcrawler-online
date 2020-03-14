@@ -217,9 +217,10 @@ class Crawler():
 		if text:
 			text = self.get_static_links(fo, text)
 			self.crawler_static(type_ = 'css', regexList=[re_css_static, re_css_css])
-			self.crawler_static(type_ = 'js',
-								regexList=[re_js_static],
-								path_js=(fo.path, fo.url))
+			# Khong quet file static cua JS 
+			# self.crawler_static(type_ = 'js',
+			# 					regexList=[re_js_static],
+			# 					path_js=(fo.path, fo.url))
 			if text:
 				results = self.get_html_links(fo, text)
 

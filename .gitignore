@@ -123,4 +123,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-*templates/websites/
+templates/websites/
+static/websites/
