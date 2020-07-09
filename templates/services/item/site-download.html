@@ -24,7 +24,7 @@
 									Files
 								</h4>
 								<div class="loading">
-									<a href="{% url "site_refresh" item.slug %}">
+									<a href="{% url 'site_refresh' item.slug %}">
 										Refresh
 										<span class="lnr icon-refresh">
 										</span>
@@ -70,20 +70,17 @@
 							</div>
 						</div>
 					</aside>
-					<!-- ends: .aside -->
 				</div>
-				<!-- ends: .col-md-4 -->
 				<div class="col-lg-9 col-md-12">
 					<textarea class="statement_info_card" style="overflow-y: scroll; padding: 0 10px; margin-bottom: 5px; font-size: 87%; height: 37vh;">{% if index %}{{ index.content }}{% endif %}</textarea>
 
 					<div class="text-center">
-						<!-- <div class="alert alert-success" role="alert">
-							<strong>Error!</strong> xxx
-						</div> -->
-						<a class="btn btn-sm btn-danger m-right-15" href="{% url "stop_download" 344 %}">
-							<i class="fa fa-stop"></i>
-							STOP
-						</a>
+            {% comment %}
+            <a class="btn btn-sm btn-danger m-right-15" href="{% url 'stop_download' 344 %}">
+              <i class="fa fa-stop"></i>
+              STOP
+            </a>
+            {% endcomment %}
 						{% if index %}
 							<a class="btn btn-sm btn-info" href="{% url 'site_preview' index.path %}" target="_blank">
 								Preview
@@ -102,22 +99,14 @@
 					</iframe>
 					{% endif %}
 					<div class="text-center">
-						<a class="btn btn-lg btn-success" href="{% url "download_file" item.slug %}">
+						<a class="btn btn-lg btn-success" href="{% url 'download_file' item.slug %}">
 							<i class="fa fa-download" aria-hidden="true"></i>
 							Download Files
 						</a>
-						<a class="btn btn-lg btn-warning" href="{% url "pricing" %}">
-							<span class="icon-basket">
-							</span>
-							Buy all Pages
-						</a>
 					</div>
 				</div>
-				<!-- ends: .col-md-8 -->
 			</div>
-			<!-- ends: .row -->
 		</div>
 	</div>
-<!-- ends: .container -->
 </section>
 {% endblock main %}

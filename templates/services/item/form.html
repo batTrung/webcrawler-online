@@ -1,62 +1,54 @@
 {% extends "base.html" %}
-
 {% block title %}
-	{{ block.super }}
+{{ block.super }}
 {% endblock title %}
-
 {% block main %}
 <section class="affiliate_area section--padding">
-	<div class="container">
-		<div class="row">
-			<!-- start col-md-12 -->
-			<div class="col-md-12">
-				<div class="section-title">
-					<h1>
-						Nhập Link 
-						<span class="highlighted">
-							Website
-						</span>
-					</h1>
-					<p>
-						Công cụ giúp Download và Copy Website để xem Offline. <br>
-						Miễn phí tải về với 10Mb.
-					</p>
-				</div>
-			</div>
-			<!-- ends: .col-md-12 -->
-		</div>
-		<!-- ends: .row -->
-		<div class="row">
-			<div class="col-lg-6 offset-lg-3">
-				<div class="cardify affiliate_form login">
-					{% include "services/includes/html_item_form.html" %}
-				</div>
-				<!-- ends: .cardify -->
-			</div>
-			<!-- ends: .col-md-6 -->
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h1>
+                        Nhập Link
+                        <span class="highlighted">
+                            Website
+                        </span>
+                    </h1>
+                    <p>
+                        Công cụ giúp Download và Copy Website để xem Offline. <br>
+                        Miễn phí tải về với 10Mb.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="cardify affiliate_form login">
+                    {% include "services/includes/html_item_form.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock main %}
-
 {% block scripts %}
 <script>
-	$(function(){
+$(function() {
 
-		$('.login').on('submit', 'form', function(){
-			var el = $(this);
-			$.ajax({
-				url: el.attr("action"),
-				type: 'post',
-				dataType: 'json',
-				data: el.serialize(),
-				success: function(data){
-					$('.login').html(data.html_item_form)
-				}
-			})
+    $('.login').on('submit', 'form', function() {
+        var el = $(this);
+        $.ajax({
+            url: el.attr("action"),
+            type: 'post',
+            dataType: 'json',
+            data: el.serialize(),
+            success: function(data) {
+                $('.login').html(data.html_item_form)
+            }
+        })
 
-			return false
-		})
-	});
+        return false
+    })
+});
 </script>
 {% endblock scripts %}

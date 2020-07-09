@@ -13,7 +13,6 @@ from django.http import HttpResponseNotFound, HttpResponse, Http404
 from myproject.celery import app
 from .forms import ItemForm
 from .models import Item, File
-from .decorators import check_recaptcha
 from .tasks import async_website
 from .helpers import generate_tree, get_zip_file
 
@@ -23,27 +22,16 @@ def home(request):
 				'services/home.html')
 
 
-# def about(request):
-# 	return render(request,
-# 				'services/about.html')
-
-
 def contact(request):
 	return render(request,
 				'services/contact.html')
 
 
-# def how_it_works(request):
-# 	return render(request,
-# 				'services/how-it-works.html')
-
-
-@check_recaptcha
 def item_register(request):
 	data = {}
 	if request.method == 'POST':
 		itemForm = ItemForm(request.POST)
-		if itemForm.is_valid() and request.recaptcha_is_valid:
+		if itemForm.is_valid():
 			item = itemForm.save()
 			web_task = async_website.delay(item.slug)
 			data['html_item_form'] = render_to_string(
@@ -91,7 +79,6 @@ def site_download(request, slug):
 
 def site_preview(request, file_path):
 	file_path = file_path.rstrip('/')
-	# file = get_object_or_404(File, path=file_path)
 	file = File.objects.filter(path=file_path).first()
 	if not file:
 		raise Http404

@@ -92,6 +92,7 @@ ipython_config.py
 
 # celery beat schedule file
 celerybeat-schedule
+celerybeat.pid
 
 # SageMath parsed files
 *.sage.py
@@ -125,3 +126,5 @@ dmypy.json
 
 templates/websites/
 static/websites/
+
+env
